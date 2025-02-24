@@ -21,3 +21,10 @@ def main():
             trans = list(map(int, input[ptr].split()))
             transitions.append(trans)
             ptr += 1
+        # Initialize marked matrix
+        marked = [[False for _ in range(n)] for __ in range(n)]
+        # Step 2: Mark pairs where one is final and the other is not
+        for p in range(n):
+            for q in range(p+1, n):
+                if (p in final_set) != (q in final_set):
+                    marked[p][q] = True
