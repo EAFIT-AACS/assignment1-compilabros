@@ -28,3 +28,37 @@ def main():
             for q in range(p+1, n):
                 if (p in final_set) != (q in final_set):
                     marked[p][q] = True
+        # Step 3: Iterate until no changes
+        changed = True
+        while changed:
+            changed = False
+            for p in range(n):
+                for q in range(p+1, n):
+                    if not marked[p][q]:
+                        for a_idx in range(len(alphabet)):
+                            s = transitions[p][a_idx]
+                            t = transitions[q][a_idx]
+                            if s != t:
+                                s_, t_ = (s, t) if s < t else (t, s)
+                                if marked[s_][t_]:
+                                    marked[p][q] = True
+                                    changed = True
+                                    break  # Break out of the symbol loop
+                        if marked[p][q]:
+                            continue  
+                        
+        # Collect equivalent pairs
+        equivalent = []
+        for p in range(n):
+            for q in range(p+1, n):
+                if not marked[p][q]:
+                    equivalent.append((p, q))
+        # Prepare output
+        output_parts = []
+        for p, q in equivalent:
+            output_parts.append(str(p))
+            output_parts.append(str(q))
+        print(' '.join(output_parts))
+        
+if __name__ == "__main__":
+    main()
