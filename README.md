@@ -21,7 +21,7 @@
 3. **Run the Program:**
    - Execute the program using Python by running the following command:
      ```bash
-     python main.py < input.txt
+     python dfa.py < input.txt
      ```
    - Here, `input.txt` should contain the test cases formatted according to the assignment specifications:
      - The first line contains the number of cases.
